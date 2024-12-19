@@ -1,36 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QR Code Reader</title>
+    <title>QR Code Reader</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            min-height: 100vh;       /* Ensure full viewport height */
+            margin: 0;
+            background-color: #f0f0f0; /* Light background */
+        }
+        #container {
+            position: relative; /* For overlaying the result */
+        }
+        #video {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc; /* Add a border */
+        }
+        #result {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+    </style>
 </head>
 <body>
-  QR Reader
-  <video id="video" width="300" height="200" autoplay></video>
-  <canvas id="canvas" width="300" height="200" style="display:none;"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script>
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
+    <div id="container">
+        <video id="video" autoplay playsinline></video>
+        <div id="result"></div>
+    </div>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const resultDiv = document.getElementById('result');
 
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-      .then(stream => {
-        video.srcObject = stream;
-        video.onloadedmetadata = () => {
-          video.play();
-          scan();
-        };
-      });
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(stream => {
+                video.srcObject = stream;
+                video.onloadedmetadata = () => {
+                    video.play();
+                    canvas.width = video.videoWidth; // Crucial: Set canvas dimensions AFTER video is loaded
+                    canvas.height = video.videoHeight;
+                    scan();
+                };
+            })
+            .catch(err => {
+                console.error("Error accessing camera:", err);
+                alert("Error accessing camera. Please check your browser settings and ensure you have a camera.");
+            });
 
-    function scan() {
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      const code = jsQR(imageData.data, imageData.width, imageData.height);
-      if (code) {
-        alert("QR code found: " + code.data);
-      }
-      requestAnimationFrame(scan);
-    }
-  </script>
+        function scan() {
+            if (video.videoWidth === 0) { // Check if video is playing
+                requestAnimationFrame(scan);
+                return;
+            }
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+            if (code) {
+                resultDiv.textContent = "QR Code: " + code.data;
+                resultDiv.style.display = "block"; // Show the result
+                // Optionally stop scanning after finding a code:
+                // return;
+            } else {
+                resultDiv.style.display = "none"; // Hide if no code
+            }
+            requestAnimationFrame(scan);
+        }
+    </script>
 </body>
 </html>
