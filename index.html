@@ -1,1 +1,35 @@
-<h1>test</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Reader</title>
+</head>
+<body>
+  <video id="video" width="300" height="200" autoplay></video>
+  <canvas id="canvas" width="300" height="200" style="display:none;"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+      .then(stream => {
+        video.srcObject = stream;
+        video.onloadedmetadata = () => {
+          video.play();
+          scan();
+        };
+      });
+
+    function scan() {
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+      if (code) {
+        alert("QR code found: " + code.data);
+      }
+      requestAnimationFrame(scan);
+    }
+  </script>
+</body>
+</html>
