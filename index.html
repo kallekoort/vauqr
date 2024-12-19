@@ -16,7 +16,6 @@
         const canvas = document.getElementById('canvas');
         const context = canvas.getContext('2d');
         const resultDiv = document.getElementById('result');
-
         navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
             .then(stream => {
                 video.srcObject = stream;
@@ -44,7 +43,7 @@
                 resultDiv.textContent = "QR Code: " + code.data;
                 resultDiv.style.display = "block"; // Show the result
                 // Optionally stop scanning after finding a code:
-                return;
+                //return;
             } else {
                 resultDiv.style.display = "none"; // Hide if no code
             }
