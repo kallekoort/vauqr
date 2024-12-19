@@ -1,1 +1,26 @@
-
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            min-height: 100vh;       /* Ensure full viewport height */
+            margin: 0;
+            background-color: #f0f0f0; /* Light background */
+        }
+        #container {
+            position: relative; /* For overlaying the result */
+        }
+        #video {
+            width: 800px;
+            height: 800px;
+            border: 1px solid #ccc; /* Add a border */
+        }
+        #result {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
