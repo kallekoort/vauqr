@@ -27,7 +27,7 @@ function scan() {
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageData.data, imageData.width, imageData.height);
     if (code) {
-        resultDiv.textContent = "result: " + code.data;
+        resultDiv.textContent = "Result: " + code.data;
         resultDiv.style.display = "block";
         
         context.strokeStyle = 'red';
