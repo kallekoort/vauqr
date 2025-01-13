@@ -30,7 +30,7 @@
                 resultDiv.style.display = "block"; // Show the result
                 // Optionally stop scanning after finding a code:
                 context.strokeStyle = 'red';
-                context.lineWidth = 3;
+                context.lineWidth = 30;
                 context.strokeRect(code.location.data[0], code.location.data[1], code.location.data[2], code.location.data[3]);
                 return;
             } else {
