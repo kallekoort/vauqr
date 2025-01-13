@@ -1,25 +1,45 @@
-        body {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center;     /* Center vertically */
-            min-height: 100vh;       /* Ensure full viewport height */
-            margin: 0;
-            background-color: #f0f0f0; /* Light background */
-        }
-        #container {
-            position: relative; /* For overlaying the result */
-        }
-        #video {
-            width: 800px;
-            height: 800px;
-            border: 1px solid #ccc; /* Add a border */
-        }
-        #result {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size:50px;
-             padding: 5px;
-            border-radius: 5px;
-            display: none; /* Initially hidden */
-        }
+body {
+    font-family: 'Ropa Sans', sans-serif;
+    color: #333;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  #githubLink {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    color: #2D99FF;
+  }
+
+  h1 {
+    margin: 10px 0;
+    font-size: 40px;
+  }
+
+  #loadingMessage {
+    text-align: center;
+    padding: 40px;
+    background-color: #eee;
+  }
+
+  #canvas {
+    width: 100%;
+  }
+
+  #output {
+    margin-top: 20px;
+    background: #eee;
+    padding: 10px;
+    padding-bottom: 0;
+  }
+
+  #output div {
+    padding-bottom: 10px;
+    word-wrap: break-word;
+  }
+
+  #noQRFound {
+    text-align: center;
+  }
