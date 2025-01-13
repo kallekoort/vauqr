@@ -1,5 +1,9 @@
+
 body {
-    font-family: 'Outfit', sans-serif;
+     font-family: "Outfit", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
     color: #333;
     max-width: 640px;
     margin: 0 auto;
