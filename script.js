@@ -26,7 +26,7 @@
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
             if (code) {
-                resultDiv.textContent = "result: " + code.data+code.location.data[1];
+                resultDiv.textContent = "result: " + code.data;
                 resultDiv.style.display = "block"; // Show the result
                 context.strokeStyle = 'red';
                 context.lineWidth = 10;
