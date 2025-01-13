@@ -30,7 +30,7 @@
                 resultDiv.style.display = "block"; // Show the result
                 context.strokeStyle = 'red';
                 context.lineWidth = 10;
-                context.strokeRect(code.location.data[0], code.location.data[1], code.location.data[2], code.location.data[3]);
+                context.strokeRect(100,200,300,400);
                 return;
             } else {
                 resultDiv.style.display = "none"; // Hide if no code
