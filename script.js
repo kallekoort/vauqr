@@ -26,7 +26,7 @@
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
             if (code) {
-                resultDiv.textContent = "TT number: " + code.data;
+                resultDiv.textContent = "result: " + code.data;
                 resultDiv.style.display = "block"; // Show the result
                 // Optionally stop scanning after finding a code:
                 context.strokeStyle = 'red';
