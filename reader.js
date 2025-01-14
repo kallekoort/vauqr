@@ -27,7 +27,7 @@ function parseQR(data){
   const row = str.substring(8, 11);
   const rev = str.substring(11, 14);
   const remainder = str.substring(14);
-  const result=ttnr+"-"+row+"-"+"rev";
+  const result=ttnr+"-"+row+"-"+rev;
   return "TT rida:"+result;
 }
 function tick() {
