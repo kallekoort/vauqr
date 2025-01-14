@@ -10,7 +10,7 @@ function drawLine(begin, end, color) {
   canvas.beginPath();
   canvas.moveTo(begin.x, begin.y);
   canvas.lineTo(end.x, end.y);
-  canvas.lineWidth = 10;
+  canvas.lineWidth = 5;
   canvas.strokeStyle = color;
   canvas.stroke();
 }
@@ -24,7 +24,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
 });
 
 function tick() {
-  loadingMessage.innerText = "⌛ Loading video..."
+  loadingMessage.innerText = "Loading video..."
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
     loadingMessage.hidden = true;
     canvasElement.hidden = false;
