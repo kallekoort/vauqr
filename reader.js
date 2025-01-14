@@ -45,6 +45,7 @@ function tick() {
       outputMessage.hidden = true;
       outputData.parentElement.hidden = false;
       outputData.innerText = code.data;
+      return;
     } else {
       outputMessage.hidden = false;
       outputData.parentElement.hidden = true;
