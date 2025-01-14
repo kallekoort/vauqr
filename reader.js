@@ -23,9 +23,9 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
   requestAnimationFrame(tick);
 });
 function parseQR(data){
-  const ttnr = str.substring(0, 8); 
-  const row = str.substring(8, 11);
-  const rev = str.substring(11, 14);
+  const ttnr = data.substring(0, 8); 
+  const row = data.substring(8, 11);
+  const rev = data.substring(11, 14);
   
   const result=ttnr+"-"+row+"-"+rev;
   return "TT rida:"+result;
