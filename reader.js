@@ -23,11 +23,11 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
   requestAnimationFrame(tick);
 });
 function parseQR(data){
-  const ttnr = data.substring(0, 8); 
-  const row = data.substring(8, 11);
-  const rev = data.substring(11, 14);
+  const ttnr = data.substring(0, 5); 
+  const row = data.substring(6, 8);
+  const rev = data.substring(9, 11);
   
-  const result=ttnr+"-"+row+"-"+rev;
+  const result=parseInt(ttnr)+"-"+parseInt(row)+"-"+parseInt(rev);
   return "TT rida:"+result;
 }
 function tick() {
