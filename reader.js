@@ -29,7 +29,7 @@ function parseQR(data){
   
   const result=parseInt(ttnr)+"-"+parseInt(row)+"-"+parseInt(rev);
   return "TT rida:"+result;
-  var url = "getData.php?query=" + result;
+  var url = "getData.html?query=" + result;
   window.location.href = url;
 }
 function tick() {
