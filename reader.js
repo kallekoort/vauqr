@@ -22,7 +22,9 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
   video.play();
   requestAnimationFrame(tick);
 });
-
+function parseQR(data){
+  return "parsed:"+data;
+}
 function tick() {
   loadingMessage.innerText = "Loading video..."
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -44,7 +46,7 @@ function tick() {
       drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
       outputMessage.hidden = true;
       outputData.parentElement.hidden = false;
-      outputData.innerText = code.data;
+      outputData.innerText = parseQR(code.data);
       return;
     } else {
       outputMessage.hidden = false;
